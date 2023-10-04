@@ -16,7 +16,7 @@ public class Member {
     private Long userId;
 
     private String name;
-
+//
     private String picture;
 
     private String password;
