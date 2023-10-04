@@ -1,8 +1,10 @@
-package oauthlearn.hello;
+package oauthlearn.hello.domain.member.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import oauthlearn.hello.domain.member.domain.Member;
+import oauthlearn.hello.domain.member.domain.Role;
 
 import java.util.Map;
 

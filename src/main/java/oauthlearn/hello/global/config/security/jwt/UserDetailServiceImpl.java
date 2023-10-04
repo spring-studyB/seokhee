@@ -1,9 +1,9 @@
-package oauthlearn.hello.jwt;
+package oauthlearn.hello.global.config.security.jwt;
 
 import lombok.RequiredArgsConstructor;
-import oauthlearn.hello.Member;
-import oauthlearn.hello.MemberRepository;
-import oauthlearn.hello.Role;
+import oauthlearn.hello.domain.member.domain.Member;
+import oauthlearn.hello.domain.member.dao.MemberRepository;
+import oauthlearn.hello.domain.member.domain.Role;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

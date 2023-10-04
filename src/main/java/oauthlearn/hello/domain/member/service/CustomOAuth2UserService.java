@@ -1,7 +1,12 @@
-package oauthlearn.hello;
+package oauthlearn.hello.domain.member.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oauthlearn.hello.domain.member.domain.Member;
+import oauthlearn.hello.domain.member.dao.MemberRepository;
+import oauthlearn.hello.global.config.security.jwt.JwtDto;
+import oauthlearn.hello.global.config.security.jwt.JwtProvider;
+import oauthlearn.hello.domain.member.dto.OAuthAttributes;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -19,6 +24,7 @@ import java.util.Collections;
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     private final MemberRepository memberRepository;
+    private final JwtProvider jwtProvider;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -48,6 +54,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         Member user = saveOrUpdate(attributes);
 
         // uesr의 userId를 통해 JWT 발급, 인가
+        JwtDto jwtDto = jwtProvider.createToken(user.getUserId());
+        log.info("jwtDto: {}", jwtDto);
 
         return new DefaultOAuth2User(Collections.singletonList(new SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),

@@ -1,5 +1,6 @@
-package oauthlearn.hello;
+package oauthlearn.hello.domain.member.dao;
 
+import oauthlearn.hello.domain.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

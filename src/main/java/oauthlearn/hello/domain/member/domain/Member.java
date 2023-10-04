@@ -1,4 +1,4 @@
-package oauthlearn.hello;
+package oauthlearn.hello.domain.member.domain;
 
 import lombok.*;
 

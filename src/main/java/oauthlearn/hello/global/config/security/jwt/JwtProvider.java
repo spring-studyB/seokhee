@@ -1,10 +1,8 @@
-package oauthlearn.hello.jwt;
+package oauthlearn.hello.global.config.security.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,11 +12,11 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.io.Decoders;
 
 import java.security.Key;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 
 @Component
+@Slf4j
 public class JwtProvider {
 
     private final Key key;
@@ -35,7 +33,7 @@ public class JwtProvider {
         final long accessTokenValidTime = 30 * 60 * 1000; // 30분
 
         Date now = new Date();
-        LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(30);
+        Date expirationDate = new Date(now.getTime() + accessTokenValidTime);
 
         Claims claims = Jwts.claims().setSubject(String.valueOf(userId));
 
@@ -50,6 +48,22 @@ public class JwtProvider {
                 .accessToken(accessToken)
                 .expirationDate(expirationDate)
                 .build();
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            log.info("Invalid JWT Token", e);
+        } catch (ExpiredJwtException e) {
+            log.info("Expired JWT Token", e);
+        } catch (UnsupportedJwtException e) {
+            log.info("Unsupported JWT Token", e);
+        } catch (IllegalArgumentException e) {
+            log.info("JWT claims string is empty.", e);
+        }
+        return false;
     }
 
     public Authentication getAuthentication(String accessToken) {

@@ -1,4 +1,4 @@
-package oauthlearn.hello;
+package oauthlearn.hello.global.common;
 
 import lombok.extern.slf4j.Slf4j;
 
