@@ -16,7 +16,7 @@ public class Member {
     private Long userId;
 
     private String name;
-
+//
     private String picture;
 
     private String password;
@@ -30,7 +30,7 @@ public class Member {
         this.name = name;
         this.picture = picture;
 
-        return this;
+        return this;//
     }
 
     public String getRoleKey(){
