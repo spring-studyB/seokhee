@@ -30,7 +30,7 @@ public class Member {
         this.name = name;
         this.picture = picture;
 
-        return this;
+        return this;//
     }
 
     public String getRoleKey(){
