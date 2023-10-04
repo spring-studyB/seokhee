@@ -17,13 +17,13 @@ public class MemberController {
     private final MemberRepository memberRepository;
     private final HttpSession httpSession;
 
-    @GetMapping("/grgwg")
+    @GetMapping("/")
     public String home(Model model){
-        return "homerr";
+        return "home";
     }
 
-    @GetMapping("/loginhrhwrhwr")
+    @GetMapping("/login")
     public String test() {
-        return "loginrr";
+        return "login";
     }
 }
