@@ -10,7 +10,7 @@
 Security filter chain: [
   DisableEncodeUrlFilter
   WebAsyncManagerIntegrationFilter
-  SecurityContextPersistenceFilter
+  SecurityContextPersistenceFilter <- SecurityContext 생성
   HeaderWriterFilter
   LogoutFilter 
   JwtAuthenticationFilter  <- addFilterBefore UsernamePasswordAuthenticationFilter.class
@@ -75,6 +75,11 @@ Security filter chain: [
 - Authentication 객체가 있는지 검사하고 없다면 exception을 날림
 - 접근하고자 하는 리소스의 승인과 거부를 판단
 
+### 나의 생각?
+- SecurityContextPersistenceFilter의 HttpSessionSecurityContextRepository에서 생성한 SecurtiyContext
+- 커스텀으로 구현한 JwtAuthenticationFilter에서 인증을 수행
+- SecurityContextHolder.getContext().setAuthentication()을 통해 Authentication 객체를 넣어줌
+- 이후 필터에서는 SecurtiyContext에 있는 AUthentication을 통해 인증 과정 수행, 인가 처리? (UsernamePasswordAuthentication ... )
 
 출처 : [https://gngsn.tistory.com/160]
 
