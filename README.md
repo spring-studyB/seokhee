@@ -31,7 +31,7 @@ Security filter chain: [
   HeaderWriterFilter
   LogoutFilter
   OAuth2AuthorizationRequestRedirectFilter  <- 추가
-  OAuth2LoginAuthenticationFilter <- 추
+  OAuth2LoginAuthenticationFilter <- 추가
   JwtAuthenticationFilter
   LogFilter
   RequestCacheAwareFilter
