@@ -2,7 +2,7 @@
 - Spring Security는 Spring 기반의 애플리케이션의 보안(인증과 권한, 인가 등)을 담당하는 스프링 하위 프레임워크
 - Spring Security는 '인증'과 '권한'에 대한 부분을 Filter 흐름에 따라 처리
 
-### 
+### @EnableWebSecurity(debug = true)로 필터 목록 확인하기
 ```
 // SecurityFilterChain을 구현한 Configuration 클래스
 
